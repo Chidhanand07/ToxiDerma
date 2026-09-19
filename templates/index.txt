@@ -1,0 +1,90 @@
+
+
+
+
+
++
++
++
++
++
++
+ToxiDerma-XAI
+Home Analyze About
+
+
+Revolutionary Arsenic Lesion Detection Using Cutting-Edge AI & XAI
+Upload medical images for instant, accurate analysis with visual explanations powered by advanced deep learning and explainable AI technologies.
+89.2%
+Model Accuracy
+<2s
+Analysis Time
+100%
+Privacy Protected
+Start Analysis
+AI-Powered Medical Analysis
+Drag and drop your medical image or click to browse. Our AI will analyze it for arsenic-related lesions.
+
+Upload Medical Image
+Drag & drop your image here or click to select
+Supports: JPG, PNG, JPEG
+Analyze Image Remove
+
+Analyzing Image...
+Initializing AI model...
+
+Analysis Results
+Analyzing...
+-
+Confidence
+
+0%
+Affected 0%
+Healthy 0%
+AI Explanation
+Upload an image to see detailed AI explanations.
+Grad-CAM LIME
+Heat map showing regions that influenced the AI's decision.
+Highlighted superpixels that contributed to the prediction.
+Download Report New Analysis
+Powered by Advanced AI Technologies
+🧠
+Advanced ResNet50 Architecture
+Transfer learning for highly accurate medical image classification with state-of-the-art deep neural networks.
+🔍
+Explainable AI Visualizations
+Grad-CAM and LIME visualizations show exactly which image regions influenced the AI's decision.
+🔒
+HIPAA-Compliant Processing
+End-to-end encryption and no data retention policies ensure complete privacy protection.
+⚡
+Instant Analysis Results
+Get comprehensive results with confidence scores and detailed probability breakdowns in seconds.
+📊
+Comprehensive Reports
+Statistical analysis and comparison to medical databases with downloadable documentation.
+📱
+Responsive Design
+Works seamlessly across desktop, tablet, and mobile devices with optimized user experience.
+Advancing Medical Diagnosis Through AI
+Arsenicosis is a chronic condition caused by prolonged exposure to arsenic, typically through contaminated drinking water. It manifests as distinctive skin lesions that can progress to serious complications if left untreated.
+Our system uses a fine-tuned ResNet50 model trained on medical images. Upload an image, get instant classification with confidence scores, and view AI explanations showing which image regions influenced the decision.
+Project Details
+Institution: RNS Institute of Technology, Department of AI & ML
+Supervisor: Dr. Mamatha S K
+This project represents cutting-edge research in medical AI and explainable machine learning.
+Technical Implementation
+	•	TensorFlow/Keras for deep learning
+	•	Flask for backend API
+	•	Modern web technologies for frontend
+	•	Grad-CAM and LIME for explainable AI
++
++
++
++
++
++
+ToxiDerma-XAI
+Medical Disclaimer: This tool is for research and educational purposes only. It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult qualified healthcare professionals.
+Validation: Our model has been validated against clinical datasets and reviewed by medical professionals. We continue to improve accuracy through ongoing research and collaboration with healthcare institutions.
+© 2025 RNS Institute of Technology. All rights reserved.

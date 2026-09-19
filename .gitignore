@@ -1,0 +1,36 @@
+# Virtual environment
+toxiderma_env/
+venv/
+.venv/
+
+# Python cache and build files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Logs
+*.log
+
+# Environment files
+.env
+*.env
+
+# macOS system files (incl. AppleDouble files created on exFAT drives)
+.DS_Store
+._*
+
+# VSCode or IDE settings
+.vscode/
+.idea/
+
+# Dataset (too large for GitHub)
+data/
+
+# Runtime outputs
+uploads/*
+!uploads/.gitkeep
+static/results/*
+!static/results/.gitkeep

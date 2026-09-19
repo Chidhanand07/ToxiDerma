@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToxiDerma-XAI | AI-Powered Arsenic Lesion Detection</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="particles-bg">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <div class="brand-icon">
+                        <div class="rotating-cube">
+                            <div class="cube-face front"><i class="fas fa-microscope"></i></div>
+                            <div class="cube-face back"><i class="fas fa-brain"></i></div>
+                            <div class="cube-face right"><i class="fas fa-flask"></i></div>
+                            <div class="cube-face left"><i class="fas fa-dna"></i></div>
+                            <div class="cube-face top"><i class="fas fa-heartbeat"></i></div>
+                            <div class="cube-face bottom"><i class="fas fa-eye"></i></div>
+                        </div>
+                    </div>
+                    <div class="brand-text">
+                        <span class="highlight">ToxiDerma</span>-XAI
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#upload" class="nav-link">Analysis</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-animation">
+                    <div class="floating-element">
+                        <div class="medical-cross">
+                            <div class="cross-vertical"></div>
+                            <div class="cross-horizontal"></div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-main">Welcome to</span>
+                    <span class="title-highlight">ToxiDerma-XAI</span>
+                    <span class="title-sub">AI-Powered Arsenic Lesion Detection</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Cutting-edge deep learning technology combined with explainable AI to detect and analyze
+                    arsenicosis skin lesions. Get accurate predictions with visual explanations.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">95.64%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">&lt;1m</span>
+                        <span class="stat-label">Analysis Time</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Explainable</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="document.getElementById('upload').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-upload"></i>
+                    Start Analysis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Upload & Analyze</h2>
+                <p class="section-subtitle">Upload a dermatological image for AI-powered analysis</p>
+            </div>
+
+            <div class="upload-container">
+                <div class="upload-card glass-card">
+                    <!-- Upload Zone -->
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">
+                            <h3>Drop your image here</h3>
+                            <p>or click to browse</p>
+                            <p class="file-types">Supported: JPG, JPEG, PNG (Max 10MB)</p>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/jpeg,image/jpg,image/png" style="display: none;">
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="upload-preview hidden" id="uploadPreview">
+                        <h3 style="margin-bottom: 20px; color: var(--accent-cyan);">
+                            <i class="fas fa-image"></i> Image Preview
+                        </h3>
+                        <img id="previewImage" class="preview-img" alt="Preview">
+                        <div class="preview-controls">
+                            <button class="btn btn-primary" id="analyzeBtn">
+                                <i class="fas fa-brain"></i>
+                                Analyze Image
+                            </button>
+                            <button class="btn btn-secondary" id="resetBtn">
+                                <i class="fas fa-redo"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Section -->
+            <div class="loading-section hidden" id="loadingSection">
+                <div class="loading-card glass-card">
+                    <div class="loading-animation">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="loading-text">
+                        <h3>Analyzing Your Image</h3>
+                        <p id="loadingStatus">Initializing AI model...</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section hidden" id="resultsSection">
+                <div class="result-card glass-card">
+                    <div class="result-header">
+                        <h3><i class="fas fa-chart-bar"></i> Analysis Results</h3>
+                        <div class="status-badge" id="statusBadge">Analyzing...</div>
+                    </div>
+
+                    <div class="result-content">
+                        <!-- Prediction Section -->
+                        <div class="prediction-section">
+                            <h4><i class="fas fa-diagnoses"></i> Prediction</h4>
+                            <div class="prediction-main">
+                                <div class="prediction-label" id="predictionLabel">-</div>
+                                <div class="confidence-meter">
+                                    <div class="confidence-label">Confidence Level</div>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" id="confidenceBar" style="width: 0%"></div>
+                                    </div>
+                                    <div class="confidence-value" id="confidenceValue">0%</div>
+                                </div>
+                            </div>
+                            <div class="probabilities">
+                                <div class="prob-item">
+                                    <span class="prob-label"><i class="fas fa-exclamation-triangle"></i> Affected</span>
+                                    <span class="prob-value" id="probAffected">0%</span>
+                                </div>
+                                <div class="prob-item">
+                                    <span class="prob-label"><i class="fas fa-check-circle"></i> Healthy</span>
+                                    <span class="prob-value" id="probHealthy">0%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Explanation Section -->
+                        <div class="explanation-section">
+                            <h4><i class="fas fa-lightbulb"></i> AI Explanation</h4>
+                            <p id="explanationText">Analyzing features...</p>
+                        </div>
+                    </div>
+
+                    <!-- Visualizations -->
+                    <div class="visualizations">
+                        <div class="viz-tabs">
+                            <button class="viz-tab active" data-tab="gradcam">
+                                <i class="fas fa-fire"></i> Grad-CAM
+                            </button>
+                            <button class="viz-tab" data-tab="lime">
+                                <i class="fas fa-puzzle-piece"></i> LIME
+                            </button>
+                        </div>
+                        <div class="viz-content">
+                            <div class="viz-panel active" id="gradcamViz">
+                                <img id="gradcamImage" class="viz-image" alt="Grad-CAM Visualization">
+                                <p class="viz-description">Heat map showing areas of focus for the AI model</p>
+                            </div>
+                            <div class="viz-panel" id="limeViz">
+                                <img id="limeImage" class="viz-image" alt="LIME Visualization">
+                                <p class="viz-description">Local interpretable model-agnostic explanations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="result-actions">
+                        <button class="btn btn-primary" id="downloadReport">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                        <button class="btn btn-secondary" id="newAnalysis">
+                            <i class="fas fa-plus"></i>
+                            New Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Features</h2>
+                <p class="section-subtitle">Powered by advanced AI and machine learning</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>Deep Learning</h3>
+                    <p>ResNet50 architecture with transfer learning for accurate detection</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Explainable AI</h3>
+                    <p>Grad-CAM and LIME visualizations to understand AI decisions</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Fast Analysis</h3>
+                    <p>Get results in seconds with optimized neural networks</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Secure & Private</h3>
+                    <p>Your medical data is processed securely and privately</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>High Accuracy</h3>
+                    <p>Trained on validated medical datasets for reliable results</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Educational Tool</h3>
+                    <p>Learn about AI in healthcare and arsenicosis detection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About ToxiDerma-XAI</h2>
+                <p class="section-subtitle">Understanding arsenicosis and our AI solution</p>
+            </div>
+            <div class="about-content glass-card">
+                <div class="about-description">
+                    <p>
+                        <strong>Arsenicosis</strong> is a chronic condition resulting from prolonged exposure to arsenic,
+                        commonly through contaminated groundwater. It manifests as distinctive dermatological lesions
+                        including hyperpigmentation, keratosis, and melanosis.
+                    </p>
+                    <p>
+                        Our ToxiDerma-XAI system uses state-of-the-art deep learning to automatically detect these lesions,
+                        providing healthcare professionals with a powerful diagnostic assistance tool. The explainable AI
+                        component ensures transparency in decision-making.
+                    </p>
+                </div>
+
+                <div class="project-info">
+                    <h4><i class="fas fa-university"></i> Project Information</h4>
+                    <p><strong>Institution:</strong> RNS Institute of Technology</p>
+                    <p><strong>Department:</strong> Artificial Intelligence & Machine Learning</p>
+                    <p><strong>Guided By:</strong> Dr. Mamatha S K</p>
+                    <p><strong>Year:</strong> 2024-2025</p>
+                </div>
+
+                <div class="tech-stack">
+                    <h4><i class="fas fa-code"></i> Technology Stack</h4>
+                    <ul>
+                        <li>Deep Learning: ResNet50 with Transfer Learning</li>
+                        <li>Framework: TensorFlow 2.x / Keras</li>
+                        <li>Explainable AI: Grad-CAM & LIME</li>
+                        <li>Backend: Python Flask REST API</li>
+                        <li>Frontend: HTML5, CSS3, JavaScript ES6+</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-icon small">
+                        <div class="rotating-cube small">
+                            <div class="cube-face front"><i class="fas fa-microscope"></i></div>
+                            <div class="cube-face back"><i class="fas fa-brain"></i></div>
+                            <div class="cube-face right"><i class="fas fa-flask"></i></div>
+                            <div class="cube-face left"><i class="fas fa-dna"></i></div>
+                            <div class="cube-face top"><i class="fas fa-heartbeat"></i></div>
+                            <div class="cube-face bottom"><i class="fas fa-eye"></i></div>
+                        </div>
+                    </div>
+                    <span><span class="highlight">ToxiDerma</span>-XAI</span>
+                </div>
+                <div class="footer-disclaimer">
+                    <p>
+                        <strong>Medical Disclaimer:</strong> This tool is designed for research and educational purposes only.
+                        It should not be used as a substitute for professional medical diagnosis or treatment.
+                        Always consult qualified healthcare professionals for medical advice.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ToxiDerma-XAI. All rights reserved. | RNS Institute of Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
